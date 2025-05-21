@@ -45,7 +45,7 @@ endmodule
 
 ![image](https://github.com/user-attachments/assets/0ea58111-49fb-49a4-ad6a-ee36cbf4e479)
 
-## Verilog Code for 1-Bit Full Adder
+## Verilog Code for 4-Bit Ripple carry Adder
 ```verilog
 module adder_4bit (
     input [3:0] A, B,
@@ -61,13 +61,51 @@ module adder_4bit (
     full_adder FA3 (A[3], B[3], C3, Sum[3], Cout);
 endmodule
 ```
+## Verilog Testbench Code for 1-Bit Full Adder
+```verilog
+module tb_adder_4bit;
+    reg [3:0] A, B;
+    reg Cin;
+    wire [3:0] Sum;
+    wire Cout;
+
+    // Instantiate the 4-bit adder
+    adder_4bit UUT (
+        .A(A), .B(B), .Cin(Cin),
+        .Sum(Sum), .Cout(Cout)
+    );
+
+    initial begin
+               
+        // Test cases
+        A = 4'b0000; B = 4'b0000; Cin = 0; #10;
+        A = 4'b0011; B = 4'b0101; Cin = 0; #10;
+        A = 4'b1111; B = 4'b0001; Cin = 0; #10;
+        A = 4'b1010; B = 4'b0101; Cin = 1; #10;
+        A = 4'b1111; B = 4'b1111; Cin = 1; #10;
+
+        $finish;
+    end
+endmodule
+
+```
+
 ## Truth Table for 4-Bit Full Adder
 
-![image](https://github.com/user-attachments/assets/5b5083dc-3c4c-484b-bc07-28f16cda1139)
+![image](https://github.com/user-attachments/assets/567af4cf-875d-448b-b616-40e450d5bbde)
+
 
 ## Simulation Results
+
+### Nclaunch Work Library Window
+
+![vlsi_ex_7(3)](https://github.com/user-attachments/assets/73bf8ff4-902e-4364-b53f-6e053f5a28a2)
+
+
 ### Simulation Waveforms
-![image](https://github.com/user-attachments/assets/b9906814-eb8c-466a-98e1-30cc97ff2069)
+![vlsi_ex_7(2)](https://github.com/user-attachments/assets/951dcb69-9811-42ab-b184-1da506d4f72f)
+
+
 
 
 ## Results
